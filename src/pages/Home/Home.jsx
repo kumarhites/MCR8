@@ -15,7 +15,6 @@ const Home = () => {
 
   const handleChange = (event) => {
     const selectedValue = event.target.value;
-    console.log(selectedValue);
     setSelectedValue(selectedValue);
     handleFilter();
   };

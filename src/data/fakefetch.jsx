@@ -10,7 +10,7 @@ export const fakeFetch = (url) => {
               {
                 id: "meet001",
                 title: "Tech Conference",
-                eventStartTime: "2023-07-13T07:00:00",
+                eventStartTime: "2023-07-14T07:00:00",
                 eventEndTime: "2023-07-13T17:00:00",
                 location: "Tech Hub",
                 address: "123 Main Street, City",
