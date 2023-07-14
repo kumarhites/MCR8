@@ -6,6 +6,9 @@ const DataContext = createContext();
 export const DataProvider = ({ children }) => {
   const [meetupData, setMeetupData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
+  const [searchText, setSearchText] = useState("");
+
+
 
   const getData = async () => {
     try {
@@ -25,7 +28,15 @@ export const DataProvider = ({ children }) => {
     getData();
   }, []);
   return (
-    <DataContext.Provider value={{ meetupData, filteredData, setFilteredData }}>
+    <DataContext.Provider
+      value={{
+        meetupData,
+        filteredData,
+        setFilteredData,
+        searchText,
+        setSearchText,
+      }}
+    >
       {children}
     </DataContext.Provider>
   );

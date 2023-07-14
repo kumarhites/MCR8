@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useData } from "../contexts/DataContext";
 
 const Navbar = () => {
+  const {
+    meetupData,
+    filteredData,
+    setFilteredData,
+    searchText,
+    setSearchText,
+  } = useData();
+
+  const handleSearch = (e) => {
+    const searchText = e.target.value;
+    setSearchText(searchText);
+    if (searchText.length < 3) {
+      setFilteredData(meetupData);
+    } else {
+      handleFilter(searchText);
+    }
+  };
+
+  const handleFilter = (searchText) => {
+    const search = meetupData.filter((meetup) =>
+      meetup.title.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setFilteredData(search);
+  };
+
   return (
     <div className="max-w-[1280px] mx-auto h-20 flex items-center justify-between px-5">
       <NavLink to="/">
@@ -31,6 +57,8 @@ const Navbar = () => {
           type="text"
           placeholder="Search by event title and tags."
           className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+          value={searchText}
+          onChange={(e) => handleSearch(e)}
         />
       </div>
     </div>

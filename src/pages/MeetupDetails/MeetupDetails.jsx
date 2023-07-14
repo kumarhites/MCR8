@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useData } from "../../contexts/DataContext";
 import { NavLink, useParams } from "react-router-dom";
 import MyModal from "../../components/Modal";
+import id from "date-fns/esm/locale/id/index";
 
 const MeetupDetails = () => {
   const { meetupData } = useData();
@@ -15,19 +16,19 @@ const MeetupDetails = () => {
 
   const meetup = meetupData?.find((meetup) => meetup.id === meetupId);
 
-  const startDate = new Date(meetup?.eventStartTime).toLocaleString();
-  const today = new Date();
+  // const startDate = new Date(meetup?.eventStartTime).toLocaleString();
+  // const today = new Date();
 
-  if (startDate < today) {
-    console.log("date1 is before date2", startDate, today);
-  } else if (startDate > today) {
-    console.log("date1 is after date2", startDate, today);
-  } else {
-    console.log("date1 is equal to date2", startDate, today);
-  }
+  // if (startDate < today) {
+  //   console.log("date1 is before date2", startDate, today);
+  // } else if (startDate > today) {
+  //   console.log("date1 is after date2", startDate, today);
+  // } else {
+  //   console.log("date1 is equal to date2", startDate, today);
+  // }
 
   return (
-    <div className="flex gap-5 flex-wrap mb-10">
+    <div className="flex gap-5 flex-wrap mb-10 p-5">
       <div className="flex-1">
         <div className="flex items-center">
           <NavLink to="/">
@@ -70,8 +71,11 @@ const MeetupDetails = () => {
             Event Tags:
           </p>
           <div className="flex gap-3">
-            {meetup?.eventTags?.map((eventTag) => (
-              <p className="px-3 py-1 bg-rose-600 text-white rounded-full flex inset-0 items-center">
+            {meetup?.eventTags?.map((eventTag, i) => (
+              <p
+                className="px-3 py-1 bg-rose-600 text-white rounded-full flex inset-0 items-center"
+                key={i}
+              >
                 {eventTag}
               </p>
             ))}
